@@ -6,10 +6,13 @@ import { FaUser } from "react-icons/fa6";
 import { GoGear } from "react-icons/go";
 
 import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card";
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 const Header = () => {
   const returnTop = () => {
@@ -21,14 +24,25 @@ const Header = () => {
 
   return (
     <div className="flex items-center justify-between text-2xl pt-3">
-      <HoverCard>
-        <HoverCardTrigger>
+      <Dialog>
+        <DialogTrigger>
           <FaUser className="cursor-pointer" />
-        </HoverCardTrigger>
-        <HoverCardContent className="text-sm">User0</HoverCardContent>
-      </HoverCard>
+        </DialogTrigger>
+        <DialogContent>
+          <DialogHeader>
+            <div className="flex items-center gap-5 mb-5">
+              <FaUser className="text-2xl" />
+              <DialogTitle className="text-2xl">User0</DialogTitle>
+            </div>
 
-      {/* <FaUser className="cursor-pointer" /> */}
+            <DialogDescription>
+              This action cannot be undone. This will permanently delete your
+              account and remove your data from our servers.
+            </DialogDescription>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
+
       <FaTwitter className="cursor-pointer" onClick={returnTop} />
       <GoGear />
     </div>

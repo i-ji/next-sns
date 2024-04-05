@@ -8,7 +8,7 @@ export type Contents = {
 // postの型
 export type PostsItem = {
   userId: number;
-  id: number;
+  id: string;
   title: string;
   body: string;
   isFollow: boolean;

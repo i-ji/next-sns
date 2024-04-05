@@ -1,16 +1,10 @@
 "use client";
 
 import React from "react";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { FaUserCircle } from "react-icons/fa";
+
 import { PostsItem } from "../type";
 import { editFollowPosts, deleteFollowPosts, editPosts } from "../api";
+import FollowPost from "./FollowPost";
 
 interface PostsType {
   posts: PostsItem[];
@@ -44,38 +38,10 @@ const Posts: React.FC<PostsType> = ({ posts }) => {
   };
 
   return (
-    <div className="pt-24">
+    <div className="pt-24 max-w-[640px] mx-auto">
       {posts.map((post) => {
         return (
-          <Card key={post.id} className="mb-2 shadow-md">
-            <CardHeader>
-              <div className="flex items-center">
-                <FaUserCircle className="text-xl mr-2" />
-                <CardTitle>User{post.userId}</CardTitle>
-                {post.isFollow ? (
-                  <button
-                    className="w-32 text-black text-sm py-1 rounded-2xl ml-auto border border-black"
-                    onClick={() => toggleFollow(post)}
-                  >
-                    フォロー外す
-                  </button>
-                ) : (
-                  <button
-                    className="w-32 bg-black text-white text-sm py-1 rounded-2xl ml-auto"
-                    onClick={() => toggleFollow(post)}
-                  >
-                    フォローする
-                  </button>
-                )}
-              </div>
-            </CardHeader>
-            <CardContent>
-              <p className="text-lg">{post.title}</p>
-            </CardContent>
-            <CardFooter>
-              <p className="text-sm font-extralight">{post.body}</p>
-            </CardFooter>
-          </Card>
+          <FollowPost key={post.id} post={post} toggleFollow={toggleFollow} />
         );
       })}
     </div>

@@ -25,11 +25,25 @@ export const editPosts = async (post: PostsItem): Promise<PostsItem[]> => {
   const res = await fetch(`http://localhost:3002/posts/${post.id}`, {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ isFollow: post.isFollow }),
+    body: JSON.stringify({
+      isFollow: post.isFollow,
+      title: post.title,
+      body: post.body,
+    }),
   });
   const updatedPost = res.json();
 
   return updatedPost;
+};
+
+// postの削除
+export const deletePosts = async (post: PostsItem): Promise<PostsItem[]> => {
+  const res = await fetch(`http://localhost:3002/posts/${post.id}`, {
+    method: "DELETE",
+    headers: { "Content-Type": "application/json" },
+  });
+  const deletePost = res.json();
+  return deletePost;
 };
 
 // followPostsの全取得
@@ -59,7 +73,11 @@ export const editFollowPosts = async (
   const res = await fetch(`http://localhost:3003/followPosts/${post.id}`, {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ isFollow: post.isFollow }),
+    body: JSON.stringify({
+      isFollow: post.isFollow,
+      title: post.title,
+      body: post.body,
+    }),
   });
   const updatedPost = res.json();
 

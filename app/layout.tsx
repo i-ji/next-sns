@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
-import Header from "@/app/components/Header";
-import Contents from "@/app/components/Contents";
-import PostBtn from "./components/PostBtn";
+// import Header from "@/app/components/Header";
+// import Contents from "@/app/components/Contents";
+// import PostBtn from "@/app/components/PostBtn";
 
 const notoSansJP = Noto_Sans_JP({ subsets: ["latin"] });
 
@@ -19,15 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body className="notoSansJP.className w-full max-w-[600px] mx-auto">
-        <div className="fixed w-full max-w-[600px] bg-white">
-          <Header />
-          <Contents />
-          <PostBtn />
-        </div>
-
-        {children}
-      </body>
+      <body className="notoSansJP.className">{children}</body>
     </html>
   );
 }
