@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useState } from "react";
+import Link from "next/link";
 import {
   Card,
   CardContent,
@@ -80,7 +81,7 @@ const FollowPost: React.FC<FollowPost> = ({ post, toggleFollow }) => {
       className="w-32 text-black text-sm py-1 rounded-2xl ml-auto border border-black"
       onClick={() => toggleFollow(post)}
     >
-      フォロー外す
+      フォロー中
     </button>
   ) : (
     <button
@@ -110,8 +111,11 @@ const FollowPost: React.FC<FollowPost> = ({ post, toggleFollow }) => {
     <Card key={post.id} className="mb-2 shadow-md">
       <CardHeader>
         <div className="flex items-center">
-          <FaUserCircle className="text-xl mr-2" />
-          <CardTitle>User{post.userId}</CardTitle>
+          <Link href={`/users/${post.userId}`} className="flex items-center">
+            <FaUserCircle className="text-2xl mr-2" />
+            <CardTitle className="hover:underline">User{post.userId}</CardTitle>
+          </Link>
+
           {post.userId === 0 ? editOrDelete : followBtn}
         </div>
       </CardHeader>

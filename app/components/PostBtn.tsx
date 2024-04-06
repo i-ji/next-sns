@@ -50,7 +50,7 @@ const PostBtn = () => {
   return (
     <Dialog>
       <DialogTrigger>
-        <AiFillPlusCircle className="text-6xl cursor-pointer fixed bottom-14 right-5 sm:absolute sm:left-[542px] sm:top-[660px]" />
+        <AiFillPlusCircle className="text-6xl cursor-pointer fixed bottom-14 right-5 sm:absolute sm:left-[560px] sm:top-[660px] hover:text-black/80" />
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>

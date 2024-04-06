@@ -17,10 +17,10 @@ const Contents: React.FC = () => {
   // おすすめorフォロー中
   const [isRecommended, setIsRecommended] = useState(initialBool);
   return (
-    <div className="flex justify-between pt-4">
+    <div className="flex justify-between pt-2">
       <Link
         href="/"
-        className={`w-1/2 text-center cursor-pointer pb-2 ${
+        className={`w-1/2 text-center cursor-pointer py-2 hover:bg-gray-100 ${
           isRecommended ? "text-gray-400 border-b-2 border-gray-300" : ""
         }`}
         onClick={() => setIsRecommended(true)}
@@ -29,7 +29,7 @@ const Contents: React.FC = () => {
       </Link>
       <Link
         href="/follow"
-        className={`w-1/2 text-center cursor-pointer pb-2 ${
+        className={`w-1/2 text-center cursor-pointer py-2 hover:bg-gray-100 ${
           !isRecommended ? "text-gray-400 border-b-2 border-gray-300" : ""
         }`}
         onClick={() => setIsRecommended(false)}

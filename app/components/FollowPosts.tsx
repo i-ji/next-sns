@@ -1,10 +1,11 @@
 "use client";
 
 import React from "react";
+import { SlUserUnfollow } from "react-icons/sl";
 
 import { PostsItem } from "../type";
 import { editFollowPosts, deleteFollowPosts, editPosts } from "../api";
-import FollowPost from "./FollowPost";
+import Post from "./Post";
 
 interface PostsType {
   posts: PostsItem[];
@@ -39,9 +40,15 @@ const Posts: React.FC<PostsType> = ({ posts }) => {
 
   return (
     <div className="pt-24 max-w-[640px] mx-auto">
+      {posts.length === 0 && (
+        <div className="text-2xl font-bold text-center mt-60">
+          <p>フォロー中のユーザーはいません。</p>
+        </div>
+      )}
       {posts.map((post) => {
         return (
-          <FollowPost key={post.id} post={post} toggleFollow={toggleFollow} />
+          //   <FollowPost key={post.id} post={post} toggleFollow={toggleFollow} />
+          <Post key={post.id} post={post} toggleFollow={toggleFollow} />
         );
       })}
     </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { FaTwitter } from "react-icons/fa";
 import { FaUser } from "react-icons/fa6";
 import { GoGear } from "react-icons/go";
@@ -23,27 +24,12 @@ const Header = () => {
   };
 
   return (
-    <div className="flex items-center justify-between text-2xl pt-3">
-      <Dialog>
-        <DialogTrigger>
-          <FaUser className="cursor-pointer" />
-        </DialogTrigger>
-        <DialogContent>
-          <DialogHeader>
-            <div className="flex items-center gap-5 mb-5">
-              <FaUser className="text-2xl" />
-              <DialogTitle className="text-2xl">User0</DialogTitle>
-            </div>
+    <div className="flex items-center justify-between text-2xl pt-3 px-5">
+      <Link href={`/users/0`}>
+        <FaUser className="cursor-pointer" />
+      </Link>
 
-            <DialogDescription>
-              This action cannot be undone. This will permanently delete your
-              account and remove your data from our servers.
-            </DialogDescription>
-          </DialogHeader>
-        </DialogContent>
-      </Dialog>
-
-      <FaTwitter className="cursor-pointer" onClick={returnTop} />
+      <FaTwitter className="cursor-pointer " onClick={returnTop} />
       <GoGear />
     </div>
   );
