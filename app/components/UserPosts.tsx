@@ -1,16 +1,15 @@
 "use client";
 
 import React from "react";
-import Post from "../components/Post";
 import { PostsItem } from "../type";
+import { editPosts } from "@/app/api";
+import Post from "@/app/components/Post";
 
-import { editPosts } from "../api";
-
-interface PostsType {
+interface UserPosts {
   posts: PostsItem[];
 }
 
-const Posts: React.FC<PostsType> = ({ posts }) => {
+const UserPosts: React.FC<UserPosts> = ({ posts }) => {
   // フォローボタンを押した時の処理
   const toggleFollow = async (post: PostsItem) => {
     const newPost = posts.filter((_post) => {
@@ -25,14 +24,18 @@ const Posts: React.FC<PostsType> = ({ posts }) => {
     }
     window.location.reload();
   };
-
   return (
-    <div className="pt-24 max-w-[638px] mx-auto">
+    <main className="pt-24 mx-auto max-w-[638px]">
+      {posts.length === 0 && (
+        <div className="text-2xl font-bold text-center mt-60">
+          <p>まだ投稿はありません。</p>
+        </div>
+      )}
       {posts.map((post) => {
         return <Post key={post.id} post={post} toggleFollow={toggleFollow} />;
       })}
-    </div>
+    </main>
   );
 };
 
-export default Posts;
+export default UserPosts;

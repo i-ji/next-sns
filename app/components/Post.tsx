@@ -11,16 +11,12 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { FaUserCircle } from "react-icons/fa";
+import { FaUser } from "react-icons/fa6";
 import { MdDelete } from "react-icons/md";
 import { FaRegEdit } from "react-icons/fa";
 import { CiSaveDown2 } from "react-icons/ci";
 import { PostsItem } from "../type";
-import {
-  deletePosts,
-  deleteFollowPosts,
-  editPosts,
-  editFollowPosts,
-} from "../api";
+import { deletePosts, editPosts } from "../api";
 
 interface Post {
   post: PostsItem;
@@ -35,7 +31,6 @@ const Post: React.FC<Post> = ({ post, toggleFollow }) => {
   // 自分の投稿を削除
   const deleteMyPost = async (post: PostsItem) => {
     await deletePosts(post);
-    await deleteFollowPosts(post);
     window.location.reload();
   };
 
@@ -55,14 +50,6 @@ const Post: React.FC<Post> = ({ post, toggleFollow }) => {
       return;
 
     await editPosts({
-      userId: 0,
-      id: post.id,
-      title: editedTitle,
-      body: editedBody,
-      isFollow: true,
-    });
-
-    await editFollowPosts({
       userId: 0,
       id: post.id,
       title: editedTitle,
@@ -113,8 +100,16 @@ const Post: React.FC<Post> = ({ post, toggleFollow }) => {
     <Card className="mb-2 shadow-md">
       <CardHeader>
         <div className="flex items-center">
-          <Link href={`/users/${post.userId}`} className="flex items-center">
-            <FaUserCircle className="text-2xl mr-2" />
+          <Link
+            href={`/users/${post.userId}`}
+            className="flex items-center text-2xl "
+          >
+            {post.userId === 0 ? (
+              <FaUser className="mr-2" />
+            ) : (
+              <FaUserCircle className="mr-2" />
+            )}
+
             <CardTitle className="hover:underline">User{post.userId}</CardTitle>
           </Link>
 

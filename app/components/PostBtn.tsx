@@ -3,7 +3,7 @@
 import React from "react";
 import { useState } from "react";
 import { AiFillPlusCircle } from "react-icons/ai";
-import { addPosts, addFollowPosts } from "../api";
+import { addPosts } from "../api";
 
 import {
   Dialog,
@@ -15,7 +15,6 @@ import {
 const PostBtn = () => {
   const [inputTitle, setInputTitle] = useState("");
   const [inputBody, setInputBody] = useState("");
-  const [randomNum, setRandomNum] = useState(Math.random() * 1e5);
 
   const postMyForm = async () => {
     if (
@@ -28,15 +27,7 @@ const PostBtn = () => {
 
     await addPosts({
       userId: 0,
-      id: String(randomNum),
-      title: inputTitle,
-      body: inputBody,
-      isFollow: true,
-    });
-
-    await addFollowPosts({
-      userId: 0,
-      id: String(randomNum),
+      id: String(Math.random() * 1e5),
       title: inputTitle,
       body: inputBody,
       isFollow: true,
@@ -44,7 +35,6 @@ const PostBtn = () => {
 
     setInputTitle("");
     setInputBody("");
-    setRandomNum(Math.random() * 1e5);
   };
 
   return (

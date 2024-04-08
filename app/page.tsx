@@ -10,7 +10,7 @@ export default async function Home() {
   const posts = (await getAllPosts()).reverse();
 
   return (
-    <main className="">
+    <main>
       <div className="fixed w-full max-w-[638px] bg-white h-[86px] left-0 sm:left-[calc(50%_-_319px)]">
         <Header />
         <Contents />
